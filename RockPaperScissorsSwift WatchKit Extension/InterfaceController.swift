@@ -19,7 +19,7 @@ enum Moves: String {
 enum Results: String {
     case tie = "TIE"
     case win = "WIN"
-    case lost = "LOST"
+    case lose = "LOSE"
 }
 
 
@@ -76,17 +76,17 @@ class InterfaceController: WKInterfaceController {
             resultLabel.setText(Results.win.rawValue.uppercased())
             counter += 1
         } else if (selection == .rock && machineChoose == .paper) {
-            resultLabel.setText(Results.lost.rawValue)
+            resultLabel.setText(Results.lose.rawValue)
         } else if (selection == .paper && machineChoose == .rock) {
             resultLabel.setText(Results.win.rawValue)
             counter += 1
         } else if (selection == .paper && machineChoose == .scissors) {
-            resultLabel.setText(Results.lost.rawValue)
+            resultLabel.setText(Results.lose.rawValue)
         } else if (selection == .scissors && machineChoose == .paper) {
             resultLabel.setText(Results.win.rawValue)
             counter += 1
         } else if (selection == .scissors && machineChoose == .rock) {
-            resultLabel.setText(Results.lost.rawValue)
+            resultLabel.setText(Results.lose.rawValue)
         }
         
         counterLabel.setText("Wins: \(counter)")
