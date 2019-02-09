@@ -10,6 +10,19 @@ import WatchKit
 import Foundation
 
 
+enum Moves: String {
+    case rock
+    case paper
+    case scissors
+}
+
+enum Results: String {
+    case tie = "TIE"
+    case win = "WIN"
+    case lose = "LOSE"
+}
+
+
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet weak var opponentLabel: WKInterfaceLabel!
@@ -21,6 +34,7 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet weak var paperButton: WKInterfaceButton!
     @IBOutlet weak var scissorsButton: WKInterfaceButton!
     
+
     enum Option: String {
         case rock
         case paper
@@ -40,21 +54,27 @@ class InterfaceController: WKInterfaceController {
             label.setText(rawValue)
         }
     }
+
     
     let options: [Option] = [.rock, .paper, .scissors]
     var counter = 0
     
+    
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+
         rockButton.setBackgroundImage(Option.rock.image)
         paperButton.setBackgroundImage(Option.paper.image)
         scissorsButton.setBackgroundImage(Option.scissors.image)
+
         
         timer.start()
     }
     
     @IBAction func rock() {
+
         check(.rock)
     }
     
@@ -67,11 +87,13 @@ class InterfaceController: WKInterfaceController {
     }
     
     func check(_ selection: Option) {
+
         
         let randomOptions = options.shuffled()
         let machineChoose = randomOptions[0]
         let result: Result
         
+
         switch (selection, machineChoose) {
         case (.rock, .scissors),
              (.paper, .rock),
@@ -87,6 +109,7 @@ class InterfaceController: WKInterfaceController {
             
         if result == .win {
             counter += 1
+
         }
             
         result.update(label: resultLabel)
